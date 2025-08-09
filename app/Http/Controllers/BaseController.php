@@ -20,7 +20,7 @@ abstract class BaseController extends Controller
 
     public function create(Request $request)
     {
-        $data = $request->validate(static::validationRules());
+        $data = $request->validate(static::validationRules($request));
         $model = $this->modelClass::create($data);
 
         return response()->json([
@@ -32,7 +32,7 @@ abstract class BaseController extends Controller
     public function update(Request $request, $id)
     {
         $model = $this->modelClass::findOrFail($id);
-        $data = $request->validate(static::validationRules());
+        $data = $request->validate(static::validationRules($request));
         $model->update($data);
 
         return response()->json([
@@ -52,5 +52,5 @@ abstract class BaseController extends Controller
         ]);
     }
 
-    abstract protected static function validationRules();
+    abstract protected static function validationRules($request);
 }

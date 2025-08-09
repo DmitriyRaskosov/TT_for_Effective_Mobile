@@ -9,6 +9,10 @@ class Task extends Model
 {
     use HasFactory;
 
+    /**
+     * @var mixed|string[]
+     */
+
     protected $table = 'tasks';
     protected $fillable = ['title', 'description', 'status'];
     public $timestamps = false;
